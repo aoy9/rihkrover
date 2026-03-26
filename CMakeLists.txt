@@ -20,7 +20,10 @@ install(
   DESTINATION share/${PROJECT_NAME}
 )
 
-
+install(PROGRAMS
+  src/motor_bridge.py
+  DESTINATION lib/${PROJECT_NAME}
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

@@ -6,9 +6,8 @@ from launch_ros.actions import Node
 def generate_launch_description():
     pkg_share = get_package_share_directory('rihkrover_description')
     
-    # URDF and RViz files
-    urdf_file = os.path.join(pkg_share, 'urdf', 'rihkrover1.urdf') # Using your updated urdf name
-    rviz_config = os.path.join(pkg_share, 'rviz', 'physical_lidar.rviz')
+    # URDF file path
+    urdf_file = os.path.join(pkg_share, 'urdf', 'rihkrover1.urdf')
     
     with open(urdf_file, 'r') as infp:
         robot_desc = infp.read()
@@ -30,16 +29,15 @@ def generate_launch_description():
             name='joint_state_publisher'
         ),
 
-        # 2. RViz2
+        # 2. MOTOR BRIDGE (The new "Legs" for your robot)
         Node(
-            package='rviz2',
-            executable='rviz2',
-            name='rviz2',
-            output='screen',
-            arguments=['-d', rviz_config]
+            package='rihkrover_description',
+            executable='motor_bridge.py',
+            name='motor_bridge',
+            output='screen'
         ),
 
-        # 3. RF2O LASER ODOMETRY (Replaces fake_wheels)
+        # 3. RF2O LASER ODOMETRY
         Node(
             package='rf2o_laser_odometry',
             executable='rf2o_laser_odometry_node',
@@ -64,7 +62,7 @@ def generate_launch_description():
             arguments=['0', '0', '0', '0', '0', '0', 'base_footprint', 'base_link']
         ),
 
-        # 5. LIDAR FRAME BRIDGE (In case hardware uses 'laser_frame')
+        # 5. LIDAR FRAME BRIDGE
         Node(
             package='tf2_ros',
             executable='static_transform_publisher',
