@@ -16,7 +16,7 @@ find_package(tf2_ros REQUIRED)
 find_package(ros_gz_sim REQUIRED)
 
 install(
-  DIRECTORY launch urdf rviz
+  DIRECTORY launch urdf rviz config
   DESTINATION share/${PROJECT_NAME}
 )
 
