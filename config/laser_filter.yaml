@@ -1,0 +1,13 @@
+scan_to_scan_filter_chain:
+  ros__parameters:
+    filter1:
+      name: rover_body_filter
+      type: laser_filters/LaserScanBoxFilter
+      params:
+        box_frame: "laser"    # Change this if your Lidar frame is named "laser_link" or "laser_frame"
+        max_x: 0.45           # Distance to front of rover (meters)
+        min_x: -0.15          # Distance to back of rover (Deletes your 165-195 degree dots!)
+        max_y: 0.25           # Distance to left side
+        min_y: -0.25          # Distance to right side
+        max_z: 0.2
+        min_z: -0.2
