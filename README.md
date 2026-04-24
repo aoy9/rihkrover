@@ -40,3 +40,5 @@ The rover utilizes the **Nav2** (Open Navigation) framework to autonomously move
 * **Risk Map Integration:** The 3D coordinate estimations from the YOLOv11 vision node are injected directly into the Nav2 local and global costmaps as point clouds. This multi-sensor integration ensures the path planner explicitly routes around visually identified hazards.
 * **Custom Controllers:** Velocity smoothers and motor controller parameters prevent aggressive acceleration, ensuring the planetary gear motors do not break traction during navigation.
 
+### Special thanks to all the developers and organizations who maintain the tools and software that made this project possible. Additional thanks to the EPIC Campus Aerospace and Computer Science pathways for sponsoring and facilitating this project.
+
